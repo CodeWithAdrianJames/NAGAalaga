@@ -1,4 +1,10 @@
-🌸 NAGAalaga: AI-Powered Maternal Health CompanionNaga City Health Innovation Challenge 2026 — Maternal & Child Health Track Team: [Your Team Name]NAGAalaga is a mobile-first platform engineered to solve the "Information Gap" in maternal healthcare within Naga City. We replace traditional, easily-lost paper "Pink Cards" with a verified, secure, and hyper-localized digital health assistant that speaks the mother's language.🚀 Key Features🛡️ Bicol-AI Triage: An intelligent chat assistant powered by Google Gemini that understands Bicol-Naga and Tagalog to assess pregnancy symptoms.📍 Barangay-Centric Dashboard: Real-time tracking of prenatal checkups and vaccination schedules specific to Naga City Health Centers.🚫 Risk Detection: Automated flagging of "Red Flag" symptoms (e.g., preeclampsia signs) with immediate guidance for the mother.💰 BHW Connectivity: A direct digital bridge between mothers and their assigned Barangay Health Workers for faster intervention.🛠️ Tech StackMonorepo Structure using clean, modular code.ComponentTechnologyMobile AppReact Native + Expo (SDK 50+)Backend APINode.js + ExpressAI EngineGoogle Gemini APINavigationExpo RouterIconsLucide-React-Native⚡ Getting StartedFollow these steps to run the project locally.1. PrerequisitesNode.js (v18+)Expo Go App (on your phone)Google AI Studio API Key2. Setup the Backend (Server)Navigate to the server folder and install dependencies:PowerShellcd server
+🌸 NAGAalaga: AI-Powered Maternal Health CompanionNaga City Health Innovation Challenge 2026 — Maternal & Child Health Track Team: [Your Team Name]NAGAalaga is a mobile-first platform engineered to solve the "Information Gap" in maternal healthcare within Naga City. We replace traditional, easily-lost paper "Pink Cards" with a verified, secure, and hyper-localized digital health assistant that speaks the mother's language.
+🚀 Key Features
+🛡️ Bicol-AI Triage: An intelligent chat assistant powered by Google Gemini that understands Bicol-Naga and Tagalog to assess pregnancy symptoms.
+📍 Barangay-Centric Dashboard: Real-time tracking of prenatal checkups and vaccination schedules specific to Naga City Health Centers.
+🚫 Risk Detection: Automated flagging of "Red Flag" symptoms (e.g., preeclampsia signs) with immediate guidance for the mother.
+💰 BHW Connectivity: A direct digital bridge between mothers and their assigned Barangay Health Workers for faster intervention.
+🛠️ Tech StackMonorepo Structure using clean, modular code.ComponentTechnologyMobile AppReact Native + Expo (SDK 50+)Backend APINode.js + ExpressAI EngineGoogle Gemini APINavigationExpo RouterIconsLucide-React-Native⚡ Getting StartedFollow these steps to run the project locally.1. PrerequisitesNode.js (v18+)Expo Go App (on your phone)Google AI Studio API Key2. Setup the Backend (Server)Navigate to the server folder and install dependencies:PowerShellcd server
 npm install
 npm start
 3. Setup the Mobile App (Client)Open a new terminal and navigate to the mobile folder:PowerShellcd client-mobile
@@ -7,3 +13,4 @@ npx expo start
 📤 How to update your GitHub now:Once you've saved the file, run these commands in your terminal to sync the new look:PowerShellgit add README.md
 git commit -m "style: updated readme to match hackathon branding"
 git push origin main
+
