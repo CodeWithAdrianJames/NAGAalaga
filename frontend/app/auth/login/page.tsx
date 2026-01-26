@@ -1,9 +1,9 @@
 'use client'
 
-import { useState } from "react";
-import publicApi from "@/utils/publicApi";
+import { useState } from 'react';
 import { useRouter } from "next/navigation";
 import { setToken } from "@/utils/authStore";
+import publicApi from '@/utils/publicApi';
 import Image from 'next/image'
 
 export default function Login() {
@@ -31,7 +31,7 @@ export default function Login() {
 
       if (res.status === 200) {
         setTimeout(() => {
-          router.push("/notes");
+          router.push("/");
         }, 500);
       }
     } catch (err: any) {
@@ -40,61 +40,76 @@ export default function Login() {
   };
 
   return (
-    <div className="min-h-screen flex items-center justify-center bg-gray-100 px-4">
-      <div className="flex flex-col md:flex-row w-full max-w-[1000px]  rounded-2xl space-x-2 overflow-hidden">
+  <main className="min-h-screen flex items-center justify-center bg-[#F2EFF9] px-4">
 
-        {/* Image Section */}
-        <div className="w-full md:w-1/2 h-48 md:h-auto  flex items-center justify-center">
-          <Image
-      src="/assets/mainLogo.svg" // Path from the public directory
-      alt="Logo"
-      width={500} // Optional for static imports as they are inferred
-      height={500} // Optional for static imports as they are inferred
-    />
-        </div>
+  {/* Center Card */}
+  <div className="flex w-full max-w-[1100px] min-h-[600px] bg-[#F2EFF9] rounded-2xl overflow-hidden">
 
-        {/* Form Section */}
-        <form
-          onSubmit={handleLogin}
-          className="w-full md:w-1/2 p-8 flex flex-col justify-center gap-4"
+    {/* Left panel (hidden on small) */}
+    <div className="hidden lg:flex w-1/2 flex-col items-start justify-center px-8">
+      <h1 className='text-4xl lg:text-6xl font-bold text-left mb-4 text-[#3F2870]'>
+        Welcome to NAGAalaga: Your Partner in Maternal Health
+      </h1>
+      <p className='text-left text-gray-700'>
+        Empowering Mothers, Connecting Barangays, Saving Lives.
+      </p>
+       <button
+          type="submit"
+          className=" py-3 px-6 rounded-lg bg-[#5A6CFF] text-white font-bold hover:opacity-90 transition cursor-pointer mt-4"
         >
-          <h1 className="text-3xl font-bold text-center mb-2 primary">Login</h1>
+          Learn More
+        </button>
 
-          {message && (
-            <p className="text-sm text-center text-red-500">{message}</p>
-          )}
-
-          <input
-            value={email}
-            onChange={(e) => setEmail(e.target.value)}
-            className="border rounded-lg p-3 focus:outline-none focus:ring-2 focus:ring-blue-400"
-            placeholder="Email"
-          />
-
-          <input
-            type="password"
-            value={password}
-            onChange={(e) => setPassword(e.target.value)}
-            className="border rounded-lg p-3 focus:outline-none focus:ring-2 focus:ring-blue-400"
-            placeholder="Password"
-          />
-
-          <button
-            type="submit"
-            className="bg-blue-500 text-white py-3 rounded-lg hover:bg-blue-600 transition"
-          >
-            Login
-          </button>
-
-          <p className="text-sm text-center text-gray-500">
-            No account yet?{" "}
-            <span className="text-blue-500 cursor-pointer hover:underline">
-              Register
-            </span>
-          </p>
-        </form>
-
-      </div>
     </div>
+
+    {/* Right panel */}
+    <div className="flex w-full lg:w-1/2 flex-col items-center justify-center p-8 space-y-6 bg-[#F2EFF9] border border-[#3F2870]/25 rounded-2xl shadow-xl">
+
+      {/* Logo */}
+      <Image
+        src="/assets/mainLogo.svg"
+        alt="Logo"
+        width={200}
+        height={200}
+        className="w-40 h-auto"
+      />
+
+      {/* Title */}
+      <h1 className='text-3xl font-extrabold text-[#3F2870] text-center'>Login</h1>
+
+      {/* Form */}
+      <form onSubmit={handleLogin} className="w-full flex flex-col gap-4">
+        <input
+          type="email"
+          placeholder="Email"
+          className="w-full p-3 rounded-lg border border-[#3F2870]/25 bg-[#F2EFF9] text-gray-800 placeholder:text-gray-500 focus:outline-none focus:ring-2 focus:ring-[#3F2870] transition"
+        />
+
+        <input
+          type="password"
+          placeholder="Password"
+          className="w-full p-3 rounded-lg border border-[#3F2870]/25 bg-[#F2EFF9] text-gray-800 placeholder:text-gray-500 focus:outline-none focus:ring-2 focus:ring-[#3F2870] transition"
+        />
+
+        <button
+          type="submit"
+          className="cursor-pointer w-full py-3 rounded-lg bg-[#3F2870] text-white font-bold hover:opacity-90 transition"
+        >
+          Login
+        </button>
+      </form>
+
+      {/* Optional register link */}
+      <p className="text-sm text-center text-gray-700 font-medium">
+        No account yet?{" "}
+        <span className="text-[#5A6CFF] cursor-pointer hover:underline font-bold">
+          Register
+        </span>
+      </p>
+
+    </div>
+  </div>
+</main>
+
   );
 }
