@@ -26,7 +26,8 @@ export default function Doctors() {
 
   // Get the hospitalId from the route
   const params = useParams()
-  const hospitalId = params.hospitalId
+ const hospitalId = params.hospitalId as string
+
 
   const doctors = doctorsByHospital[hospitalId] || []
 
@@ -42,7 +43,7 @@ export default function Doctors() {
             {doctors.map((doc) => (
               <Link
                 key={doc.id}
-                href={`/mothers/selectHospital/${doc.id}`} // Dynamic route for setting appointment
+                href={`/mothers/selectHospital/${hospitalId}/setAppointment/${doc.id}`}
                 className="flex flex-col rounded-2xl bg-[#F2EFF9] shadow-md hover:-translate-y-0.5 hover:shadow-xl transition-all p-6 cursor-pointer"
               >
                 <h1 className="text-black text-2xl font-bold">{doc.name}</h1>
