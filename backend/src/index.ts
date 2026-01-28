@@ -3,6 +3,7 @@ import { connectDB } from "../database/database";
 import dotenv from "dotenv";
 import cors from 'cors';
 import cookieParser from "cookie-parser"
+import routes from '../routes'
 
 dotenv.config();
 
@@ -18,7 +19,7 @@ app.use(cors({
 
 app.use(express.json());
 app.use(cookieParser());
-
+app.use("/api", routes);
 
 app.get("/",(req:Request , res:Response)=>{
     res.send("Express + Ts server");
