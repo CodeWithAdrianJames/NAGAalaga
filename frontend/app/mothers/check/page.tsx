@@ -11,33 +11,39 @@ type TriageResult = {
 }
 
 export default function Check() {
-  const [symptoms, setSymptoms] = useState("")
-  const [result, setResult] = useState<TriageResult | null>(null)
-  const [loading, setLoading] = useState(false)
+  const [symptoms, setSymptoms] = useState<string>(""); // Explicit string type
+  const [result, setResult] = useState<TriageResult | null>(null);
+  const [loading, setLoading] = useState<boolean>(false);
 
   const handleCheck = async () => {
-    if (!symptoms.trim()) return
+    // Ensure we are using the correct variable name: 'symptoms'
+    if (!symptoms || !symptoms.trim()) return;
 
     try {
-      setLoading(true)
+      setLoading(true);
 
       const res = await fetch("http://localhost:8080/api/triage/gemini", {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
         },
-        body: JSON.stringify({ symptoms }),
-      })
+        body: JSON.stringify({ symptoms: symptoms }), // Explicitly map it
+      });
 
-      const data = await res.json()
+      if (!res.ok) throw new Error("Network response was not ok");
 
-      setResult(data)
+      const data: TriageResult = await res.json();
+      setResult(data);
     } catch (err) {
-      console.error(err)
+      console.error("Triage Error:", err);
+      // Optional: Set an error state here so the user knows it failed
     } finally {
-      setLoading(false)
+      setLoading(false);
     }
-  }
+  
+
+  // ... rest of your return statement
+}
 
   return (
     <main className="min-h-screen bg-[#F2EFF9] px-6 pt-20">

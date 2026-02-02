@@ -23,6 +23,7 @@ import {
 
 // Define what a message looks like for TypeScript
 interface ChatMessage {
+  id?: string;
   sender: string;
   text: string;
   conversationId: string;
@@ -84,27 +85,22 @@ export default function ChatPage() {
     socket.emit("join-chat", conversationId);
 
     socket.on("receive-message", (data: ChatMessage) => {
-      setChat((prev) => {
-        // Check if this message already exists (from optimistic update)
-        const isDuplicate = prev.some(msg => 
-          msg.text === data.text && 
-          msg.sender === data.sender && 
-          Math.abs(new Date(msg.createdAt || '').getTime() - new Date(data.createdAt || '').getTime()) < 2000
-        );
-        
-        if (isDuplicate) {
-          // Replace the optimistic message with the real one
-          return prev.map(msg => 
-            (msg as any).id && msg.text === data.text && msg.sender === data.sender 
-              ? data 
-              : msg
-          );
-        }
-        
-        return [...prev, data];
-      });
-      setIsTyping(false);
-    });
+  setChat((prev) => {
+    // Check if we already have this message
+    const exists = prev.find(msg => 
+      (data.id && msg.id === data.id) || 
+      (msg.text === data.text && msg.sender === data.sender && msg.createdAt === data.createdAt)
+    );
+
+    if (exists) {
+      // If it exists (it's our own message back), don't add it again
+      return prev;
+    }
+
+    // It's a new message from the other person
+    return [...prev, data];
+  });
+});
 
     socket.on("user-typing", () => {
       setIsTyping(true);

@@ -11,7 +11,7 @@ export async function GET(req: Request) {
 
   try {
     const client = await clientPromise;
-    const db = client.db("naga_alaga_db");
+    const db = client.db("NAGAAPP");
 
     // Fetch messages for this chat, sorted by oldest first
     const messages = await db
